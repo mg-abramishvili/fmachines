@@ -69,6 +69,16 @@
 
         <footer>
             <div class="container">
+                <div class="socials">
+                    <a href="#">
+                        <img src="/img/telegram.svg" alt="">
+                        <span>Написать в Telegram</span>
+                    </a>
+                    <a href="#">
+                        <img src="/img/whatsapp.svg" alt="">
+                        <span>Написать в WhatsApp</span>
+                    </a>
+                </div>
                 <p>© Все права защищены</p>
                 <p>FuckingMachines.ru, 2022</p>
                 <a href="/policy">Политика конфиденциальности</a>

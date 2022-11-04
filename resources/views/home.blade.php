@@ -39,7 +39,7 @@
         </button> -->
     </div>
 
-    <div class="main-catalog p1">
+    <div class="main-catalog p11">
         <div class="container">
             <div class="main-catalog-item">
                 <a href="#">
@@ -65,6 +65,13 @@
                     <h2 class="main-catalog-item-name">Девайсы и аксессуары</h2>
                 </a>
             </div>
+        </div>
+    </div>
+
+    <div class="main-history p01">
+        <div class="container">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus et debitis minus vitae accusantium, assumenda eligendi praesentium veritatis nesciunt tempora, atque necessitatibus voluptatum sunt aliquam culpa facere aut excepturi? Aliquid atque, molestias minus accusantium, cupiditate odit mollitia distinctio, saepe architecto rem recusandae autem magnam dolore sit facere voluptates molestiae itaque?</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero porro consequuntur quo quisquam doloribus, facilis nihil necessitatibus recusandae quos tenetur nemo eius assumenda quis corrupti!</p>
         </div>
     </div>
 @endsection
