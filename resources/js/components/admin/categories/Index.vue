@@ -1,0 +1,62 @@
+<template>
+    <div>
+        <div class="subheader w-100">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-7">
+                    <h1>Каталог</h1>
+                </div>
+                <div class="col-12 col-lg-5">
+                    
+                </div>
+            </div>
+        </div>
+
+        <Loader v-if="views.loading" />
+
+        <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+            <div class="w-100">
+                <div class="row">
+                    <div v-for="category in categories" class="col-12 col-lg-3">
+                        <div class="box mb-4">
+                            <router-link :to="{name: 'Category', params: {id: category.id} }">
+                                {{ category.name }}
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import Loader from '../Loader.vue'
+
+export default {
+    data() {
+        return {
+            categories: [],
+
+            views: {
+                loading: true,
+            }
+        }
+    },
+    created() {
+        this.loadCategories()
+    },
+    methods: {
+        loadCategories() {
+            axios.get('/_admin/categories')
+            .then(response => {
+                this.categories = response.data
+
+                this.views.loading = false
+            })
+        },
+    },
+    components: {
+        Loader
+    }
+}
+</script>
