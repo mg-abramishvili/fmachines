@@ -15,6 +15,6 @@ class CategoryController extends Controller
 
     public function category($id)
     {
-        return Category::find($id);
+        return Category::with('products')->find($id);
     }
 }
