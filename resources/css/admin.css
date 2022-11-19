@@ -197,6 +197,7 @@ body.admin_panel {
 .admin_panel .form-label {
     font-size: 15px;
     font-weight: 600;
+    display: block;
 }
 
 .admin_panel .ck-editor__editable {

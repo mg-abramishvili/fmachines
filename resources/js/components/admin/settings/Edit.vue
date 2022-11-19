@@ -25,6 +25,7 @@
                         <label>Бесплатная доставка (от)</label>
                         <input v-model="free_delivery_from" type="number" min="100" class="form-control">
                     </div>
+                    
                     <button @click="save()" :disabled="!views.saveButton" class="btn btn-primary">Сохранить</button>
                 </div>
             </div>
