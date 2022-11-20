@@ -194,6 +194,7 @@ export default {
                     price_rub: this.price_rub,
                     price_usd: this.price_usd,
                     category_id: this.selected.category,
+                    order: this.order,
                 })
                 .then(response => {
                     this.views.saveButton = true
@@ -220,6 +221,7 @@ export default {
                     price_rub: this.price_rub,
                     price_usd: this.price_usd,
                     category_id: this.selected.category,
+                    order: this.order,
                 })
                 .then(response => {
                     this.views.saveButton = true
