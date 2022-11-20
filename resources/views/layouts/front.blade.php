@@ -29,10 +29,10 @@
                         <div class="col header-top-lang">
                             <ul>
                                 <li>
-                                    <a href="#">RUS</a>
+                                    <a href="/?lang=ru">RUS</a>
                                 </li>
                                 <li>
-                                    <a href="#">ENG</a>
+                                    <a href="/?lang=en">ENG</a>
                                 </li>
                             </ul>
                         </div>

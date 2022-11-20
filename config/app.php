@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -213,5 +213,10 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Image' => Intervention\Image\ImageServiceProvider::class,
     ])->toArray(),
+
+    'languages' => [
+        'ru' => 'RU',
+        'en' => 'EN',
+    ]
 
 ];

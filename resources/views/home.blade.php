@@ -42,56 +42,24 @@
     <div class="main-catalog p11">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-4">
-                    <div class="main-catalog-item">
-                        <a href="#">
-                            <div class="main-catalog-item-image">
-                                <div class="main-catalog-item-image-inner" style="background-image: url(/img/cat1.jpg)"></div>
-                            </div>
-                            <h2 class="main-catalog-item-name">Секс-машины Premium</h2>
-                        </a>
+                @foreach($categories as $category)
+                    <div class="col-12 col-lg-4">
+                        <div class="main-catalog-item">
+                            <a href="#">
+                                <div class="main-catalog-item-image">
+                                    <div class="main-catalog-item-image-inner" style="background-image: url(/img/cat1.jpg)"></div>
+                                </div>
+                                <h2 class="main-catalog-item-name">
+                                    @if(app()->getLocale() == 'en')
+                                        {{ $category->name_eng }}
+                                    @else
+                                        {{ $category->name }}
+                                    @endif
+                                </h2>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="main-catalog-item">
-                        <a href="#">
-                            <div class="main-catalog-item-image">
-                                <div class="main-catalog-item-image-inner" style="background-image: url(/img/cat2.jpg)"></div>
-                            </div>
-                            <h2 class="main-catalog-item-name">БДСМ мебель</h2>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="main-catalog-item">
-                        <a href="#">
-                            <div class="main-catalog-item-image">
-                                <div class="main-catalog-item-image-inner" style="background-image: url(/img/cat3.jpg)"></div>
-                            </div>
-                            <h2 class="main-catalog-item-name">Девайсы и аксессуары</h2>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="main-catalog-item">
-                        <a href="#">
-                            <div class="main-catalog-item-image">
-                                <div class="main-catalog-item-image-inner" style="background-image: url(/img/cat3.jpg)"></div>
-                            </div>
-                            <h2 class="main-catalog-item-name">Девайсы и аксессуары</h2>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="main-catalog-item">
-                        <a href="#">
-                            <div class="main-catalog-item-image">
-                                <div class="main-catalog-item-image-inner" style="background-image: url(/img/cat3.jpg)"></div>
-                            </div>
-                            <h2 class="main-catalog-item-name">Девайсы и аксессуары</h2>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
