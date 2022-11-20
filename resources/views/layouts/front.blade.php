@@ -121,11 +121,11 @@
         <footer>
             <div class="container">
                 <div class="socials">
-                    <a href="#">
+                    <a href="{{ $settings->telegram }}">
                         <img src="/img/telegram.svg" alt="">
                         <span>Написать в Telegram</span>
                     </a>
-                    <a href="#">
+                    <a href="{{ $settings->whatsapp }}">
                         <img src="/img/whatsapp.svg" alt="">
                         <span>Написать в WhatsApp</span>
                     </a>

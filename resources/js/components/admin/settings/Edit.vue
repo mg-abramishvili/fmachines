@@ -13,17 +13,30 @@
         <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="w-100">
                 <div class="box px-4 py-4 mb-4">
-                    <div class="mb-4">
-                        <label>Yookassa идентификатор магазина</label>
-                        <input v-model="yookassa_shop_id" type="text" class="form-control">
+
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <div class="mb-4">
+                                <label class="form-label">WhatsApp</label>
+                                <input v-model="whatsapp" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="mb-4">
+                                <label class="form-label">Telegram</label>
+                                <input v-model="telegram" type="text" class="form-control">
+                            </div>
+                        </div>
                     </div>
+
                     <div class="mb-4">
-                        <label>Yookassa секретный ключ</label>
-                        <input v-model="yookassa_secret_key" type="text" class="form-control">
+                        <label class="form-label">Текст сайта (RUS)</label>
+                        <ckeditor :editor="editor" v-model="about_text" :config="editorConfig"></ckeditor>
                     </div>
+
                     <div class="mb-4">
-                        <label>Бесплатная доставка (от)</label>
-                        <input v-model="free_delivery_from" type="number" min="100" class="form-control">
+                        <label class="form-label">Текст сайта (ENG)</label>
+                        <ckeditor :editor="editor" v-model="about_text_eng" :config="editorConfig"></ckeditor>
                     </div>
                     
                     <button @click="save()" :disabled="!views.saveButton" class="btn btn-primary">Сохранить</button>
@@ -35,18 +48,31 @@
 
 <script>
 import Loader from '../Loader.vue'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 export default {
     data() {
         return {
-            yookassa_shop_id: '',
-            yookassa_secret_key: '',
-            free_delivery_from: 0,
+            about_text: '',
+            about_text_eng: '',
+            telegram: '',
+            whatsapp: '',
 
             views: {
                 loading: true,
                 saveButton: true,
-            }
+            },
+
+            editor: ClassicEditor,
+            editorData: '',
+            editorConfig: {
+                toolbar: [ 'heading', 'bold', '|', 'bulletedList', 'numberedList', '|', 'insertTable', '|', 'undo', 'redo' ],
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Тег P' },
+                    ]
+                },
+            },
         }
     },
     created() {
@@ -56,23 +82,36 @@ export default {
         loadSettings() {
             axios.get('/_admin/settings')
             .then(response => {
-                this.yookassa_shop_id = response.data.yookassa_shop_id
-                this.yookassa_secret_key = response.data.yookassa_secret_key
-                this.free_delivery_from = response.data.free_delivery_from
+                this.about_text = response.data.about_text
+                this.about_text_eng = response.data.about_text_eng
+                this.telegram = response.data.telegram
+                this.whatsapp = response.data.whatsapp
 
                 this.views.loading = false
             })
         },
         save() {
-            if(!this.yookassa_shop_id) {
+            if(!this.about_text) {
                 return this.$swal({
-                    text: 'Укажите yookassa_shop_id',
+                    text: 'Укажите текст',
                     icon: 'error',
                 })
             }
-            if(!this.yookassa_secret_key) {
+            if(!this.about_text_eng) {
                 return this.$swal({
-                    text: 'Укажите yookassa_secret_key',
+                    text: 'Укажите текст ENG',
+                    icon: 'error',
+                })
+            }
+            if(!this.telegram) {
+                return this.$swal({
+                    text: 'Укажите Telegram',
+                    icon: 'error',
+                })
+            }
+            if(!this.whatsapp) {
+                return this.$swal({
+                    text: 'Укажите WhatsApp',
                     icon: 'error',
                 })
             }
@@ -80,14 +119,15 @@ export default {
             this.views.saveButton = false
 
             axios.post('/_admin/settings', {
-                yookassa_shop_id: this.yookassa_shop_id,
-                yookassa_secret_key: this.yookassa_secret_key,
-                free_delivery_from: this.free_delivery_from,
+                about_text: this.about_text,
+                about_text_eng: this.about_text_eng,
+                telegram: this.telegram,
+                whatsapp: this.whatsapp,
             })
             .then(response => {
                 this.views.saveButton = true
 
-                this.$router.push({ name: 'Numbers' })
+                this.$router.push({ name: 'Leads' })
             })
             .catch(errors => {
                 this.views.saveButton = true
