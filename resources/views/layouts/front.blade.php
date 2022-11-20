@@ -29,10 +29,10 @@
                         <div class="col header-top-lang">
                             <ul>
                                 <li>
-                                    <a href="/?lang=ru">RUS</a>
+                                    <a href="{{ url()->current() }}/?lang=ru">RUS</a>
                                 </li>
                                 <li>
-                                    <a href="/?lang=en">ENG</a>
+                                    <a href="{{ url()->current() }}/?lang=en">ENG</a>
                                 </li>
                             </ul>
                         </div>
@@ -60,7 +60,7 @@
                                     <ul class="navbar-nav">
                                         @foreach($categories as $category)
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">
+                                                <a href="/catalog/{{ $category->id }}" class="nav-link">
                                                     @if(app()->getLocale() == 'en')
                                                         {{ $category->name_eng }}
                                                     @else
@@ -90,7 +90,7 @@
                                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                     @foreach($categories as $category)
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">
+                                            <a href="/catalog/{{ $category->id }}" class="nav-link">
                                                 @if(app()->getLocale() == 'en')
                                                     {{ $category->name_eng }}
                                                 @else

@@ -26,7 +26,7 @@
         <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="w-100">
                 <div class="box mb-4">
-                    <table class="table">
+                    <table v-if="category.products && category.products.length" class="table">
                         <tbody>
                             <tr v-for="(product, index) in category.products">
                                 <td class="text-center text-muted">{{ index + 1 }}</td>
@@ -40,6 +40,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <p v-else class="m-0 p-4">Категория пуста.</p>
                 </div>
             </div>
         </div>

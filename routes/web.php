@@ -2,12 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\MainBanner;
 
 Route::get('/', function () {
     $mainbanners = MainBanner::all();
 
     return view('home', compact('mainbanners'));
+});
+
+Route::get('catalog/{id}', function ($id) {
+    $category = Category::with('products')->find($id);
+
+    return view('category', compact('category'));
+});
+
+Route::get('product/{id}', function ($id) {
+    $product = Product::find($id);
+
+    return view('product', compact('product'));
 });
 
 Route::get('policy', function () {

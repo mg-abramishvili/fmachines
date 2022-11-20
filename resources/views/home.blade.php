@@ -64,7 +64,7 @@
                 @foreach($categories as $category)
                     <div class="col-12 col-lg-4">
                         <div class="main-catalog-item">
-                            <a href="#">
+                            <a href="/catalog/{{ $category->id }}">
                                 <div class="main-catalog-item-image">
                                     <div class="main-catalog-item-image-inner" style="background-image: url(/img/cat1.jpg)"></div>
                                 </div>
