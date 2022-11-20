@@ -103,8 +103,7 @@ header {
 }
 .header-top-logo {
     flex: 0 0 auto;
-    width: 33.3333%;
-    margin-left: 33.3333%;
+    width: 66.6667%;
 }
 .header-top-logo a {
     display: block;
@@ -112,7 +111,7 @@ header {
     margin: 0 auto;
 }
 .header-top-logo a img {
-    width: 100%;
+    width: 500px;
 }
 .header-top-lang {
     flex: 0 0 auto;
@@ -159,10 +158,14 @@ header {
 }
 .header-bottom {
     background-color: rgba(255,255,255,0.1);
+    background-color: transparent;
 }
 .header-bottom-menu {
     flex: 0 0 auto;
     width: 90%;
+}
+.header-bottom-menu .nav-link:first-child {
+    padding-left: 0;
 }
 .header-bottom-nav-button {
     flex: 0 0 auto;

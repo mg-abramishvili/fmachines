@@ -23,7 +23,7 @@
                     <div class="row align-items-center">
                         <div class="col header-top-logo">
                             <a href="/">
-                                <img src="/img/logo.png" alt="FuckingMachines.ru">
+                                <img src="/img/logo.svg" alt="FuckingMachines.ru">
                             </a>
                         </div>
                         <div class="col header-top-lang">
@@ -54,21 +54,17 @@
                             <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
                                 <div class="navbar-collapse collapse" id="navbarsExample10" style="">
                                     <ul class="navbar-nav">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Секс-машины</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">БДСМ мебель</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Девайсы и аксессуары</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Интерьерные решения</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Оптион</a>
-                                        </li>
+                                        @foreach($categories as $category)
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">
+                                                    @if(app()->getLocale() == 'en')
+                                                        {{ $category->name_eng }}
+                                                    @else
+                                                        {{ $category->name }}
+                                                    @endif
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </nav>

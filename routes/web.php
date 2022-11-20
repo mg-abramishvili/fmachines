@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 
 Route::get('/', function () {
-    $categories = Category::orderBy('order', 'asc')->get();
-
-    return view('home', compact('categories'));
+    return view('home');
 });
 
 Route::get('policy', function () {
