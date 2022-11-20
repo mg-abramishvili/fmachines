@@ -46,13 +46,21 @@
                                     <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
                                 </select>
                             </div>
-                            <div class="col-12 col-lg-3">
-                                <label class="form-label">Цена (RUB)</label>
-                                <input v-model="price_rub" type="number" min="0" class="form-control">
-                            </div>
-                            <div class="col-12 col-lg-3">
-                                <label class="form-label">Цена (USD)</label>
-                                <input v-model="price_usd" type="number" min="0" class="form-control">
+                            <div class="col-12 col-lg-6">
+                                <div class="row">
+                                    <div class="col-12 col-lg-4">
+                                        <label class="form-label">Цена (RUB)</label>
+                                        <input v-model="price_rub" type="number" min="0" class="form-control">
+                                    </div>
+                                    <div class="col-12 col-lg-4">
+                                        <label class="form-label">Цена (USD)</label>
+                                        <input v-model="price_usd" type="number" min="0" class="form-control">
+                                    </div>
+                                    <div class="col-12 col-lg-4">
+                                        <label class="form-label">Сортировка</label>
+                                        <input v-model="order" type="number" min="0" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,6 +109,7 @@ export default {
             description_eng: '',
             price_rub: 0,
             price_usd: 0,
+            order: 0,
 
             categories: [],
 
@@ -127,7 +136,12 @@ export default {
     },
     created() {
         this.loadCategories()
-        this.loadProduct()
+
+        if(this.$route.params.id) {
+            this.loadProduct()
+        } else {
+            this.views.loading = false
+        }
     },
     methods: {
         loadCategories() {
@@ -147,6 +161,9 @@ export default {
                 this.name_eng = response.data.name_eng
                 this.description = response.data.description
                 this.description_eng = response.data.description_eng
+                this.price_rub = response.data.price_rub
+                this.price_usd = response.data.price_usd
+                this.order = response.data.order
 
                 this.views.loading = false
             })
@@ -167,22 +184,59 @@ export default {
 
             this.views.saveButton = false
 
-            axios.post('/_admin/products', {
-                name: this.name,
-            })
-            .then(response => {
-                this.views.saveButton = true
-
-                this.$router.push({ name: 'Category', params: {id: this.product.category_id} })
-            })
-            .catch(errors => {
-                this.views.saveButton = true
-                
-                return this.$swal({
-                    text: 'Ошибка',
-                    icon: 'error',
+            if(this.$route.params.id) {
+                axios.put(`/_admin/product/${this.$route.params.id}/update`, {
+                    name: this.name,
+                    name_eng: this.name_eng,
+                    name_eng: this.name_eng,
+                    description: this.description,
+                    description_eng: this.description_eng,
+                    price_rub: this.price_rub,
+                    price_usd: this.price_usd,
+                    category_id: this.selected.category,
                 })
-            })
+                .then(response => {
+                    this.views.saveButton = true
+
+                    this.$router.push({ name: 'Category', params: {id: this.product.category_id} })
+                })
+                .catch(errors => {
+                    this.views.saveButton = true
+                    
+                    return this.$swal({
+                        text: 'Ошибка',
+                        icon: 'error',
+                    })
+                })
+            }
+
+            if(!this.$route.params.id) {
+                axios.post('/_admin/products', {
+                    name: this.name,
+                    name_eng: this.name_eng,
+                    name_eng: this.name_eng,
+                    description: this.description,
+                    description_eng: this.description_eng,
+                    price_rub: this.price_rub,
+                    price_usd: this.price_usd,
+                    category_id: this.selected.category,
+                })
+                .then(response => {
+                    this.views.saveButton = true
+
+                    this.$router.push({ name: 'Category', params: {id: this.product.category_id} })
+                })
+                .catch(errors => {
+                    this.views.saveButton = true
+                    
+                    return this.$swal({
+                        text: 'Ошибка',
+                        icon: 'error',
+                    })
+                })
+            }
+
+            
         }
     },
     components: {

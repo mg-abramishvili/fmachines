@@ -12,4 +12,58 @@ class ProductController extends Controller
     {
         return Product::with('category')->find($id);
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'name_eng' => 'required',
+            'description' => 'required',
+            'description_eng' => 'required',
+            'price_rub' => 'required',
+            'price_usd' => 'required',
+            'category_id' => 'required',
+            'order' => 'required',
+        ]);
+
+        $product = new Product();
+
+        $product->name = $request->name;
+        $product->name_eng = $request->name_eng;
+        $product->description = $request->description;
+        $product->description_eng = $request->description_eng;
+        $product->price_rub = $request->price_rub;
+        $product->price_usd = $request->price_usd;
+        $product->category_id = $request->category_id;
+        $product->order = $request->order;
+
+        $product->save();
+    }
+
+    public function update($id, Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'name_eng' => 'required',
+            'description' => 'required',
+            'description_eng' => 'required',
+            'price_rub' => 'required',
+            'price_usd' => 'required',
+            'category_id' => 'required',
+            'order' => 'required',
+        ]);
+
+        $product = Product::find($id);
+
+        $product->name = $request->name;
+        $product->name_eng = $request->name_eng;
+        $product->description = $request->description;
+        $product->description_eng = $request->description_eng;
+        $product->price_rub = $request->price_rub;
+        $product->price_usd = $request->price_usd;
+        $product->category_id = $request->category_id;
+        $product->order = $request->order;
+
+        $product->save();
+    }
 }

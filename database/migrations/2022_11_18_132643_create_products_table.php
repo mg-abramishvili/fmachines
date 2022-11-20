@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description_eng');
             $table->integer('price_rub');
             $table->integer('price_usd');
+            $table->integer('order')->default(999);
             $table->text('gallery');
             $table->string('slug')->nullable();
             $table->timestamps();
