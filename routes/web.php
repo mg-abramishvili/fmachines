@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
+use App\Models\MainBanner;
 
 Route::get('/', function () {
-    return view('home');
+    $mainbanners = MainBanner::all();
+
+    return view('home', compact('mainbanners'));
 });
 
 Route::get('policy', function () {

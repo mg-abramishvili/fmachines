@@ -18,6 +18,7 @@ class SettingSeeder extends Seeder
                 'about_text_eng' => '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus et debitis minus vitae accusantium, assumenda eligendi praesentium veritatis nesciunt tempora, atque necessitatibus voluptatum sunt aliquam culpa facere aut excepturi? Aliquid atque, molestias minus accusantium, cupiditate odit mollitia distinctio, saepe architecto rem recusandae autem magnam dolore sit facere voluptates molestiae itaque?</p><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero porro consequuntur quo quisquam doloribus, facilis nihil necessitatibus recusandae quos tenetur nemo eius assumenda quis corrupti!</p>',
                 'telegram' => 'telegram',
                 'whatsapp' => 'whatsapp',
+                'video_bg' => '/img/video.mp4',
             ],
         ]);
     }

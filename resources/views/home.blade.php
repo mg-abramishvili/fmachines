@@ -11,12 +11,31 @@
             <div data-bs-interval="5000" class="carousel-item active">
                 <div class="carousel-item-video">
                     <video autoplay nocontrols muted loop>
-                        <source src="/img/video.mp4" type="video/mp4">
+                        <source src="{{ $settings->video_bg }}" type="video/mp4">
                     </video>
                 </div>
                 <div class="carousel-caption">
-                    <h1>Секс-машины и БДСМ-мебель</h1>
-                    <p>с доставкой по всему миру</p>
+                    @foreach($mainbanners as $mainbanner)
+                        <div class="carousel-caption-slide">
+                            <h1>
+                                @if(app()->getLocale() == 'en')
+                                    {{ $mainbanner->title_eng }}
+                                @else
+                                {{ $mainbanner->title }}
+                                @endif
+                            </h1>
+
+                            @if($mainbanner->subtitle && $mainbanner->subtitle_eng)
+                                <p>
+                                    @if(app()->getLocale() == 'en')
+                                        {{ $mainbanner->subtitle_eng }}
+                                    @else
+                                        {{ $mainbanner->subtitle }}
+                                    @endif
+                                </p>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <!-- <div data-bs-interval="5000" class="carousel-item">
