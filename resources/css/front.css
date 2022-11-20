@@ -188,6 +188,7 @@ header {
 }
 .offcanvas {
     background-color: rgba(255, 63, 140, 0.9);
+    background-color: rgba(50, 50, 50, 0.92);
 }
 .nav-link {
     font-weight: 300;
