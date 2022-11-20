@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('name_eng');
             $table->string('image');
             $table->string('slug')->nullable();
+            $table->integer('order')->default(999);
             $table->timestamps();
         });
     }

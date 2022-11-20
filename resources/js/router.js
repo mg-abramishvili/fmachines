@@ -4,6 +4,7 @@ import Home from './components/admin/Home.vue'
 
 import Categories from './components/admin/categories/Index.vue'
 import Category from './components/admin/categories/Category.vue'
+import CategoryMaster from './components/admin/categories/CategoryMaster.vue'
 
 import ProductMaster from './components/admin/products/ProductMaster.vue'
 
@@ -28,7 +29,12 @@ const routes = [
         component: Category
     },
     {
-        path: '/admin/product/:id?',
+        path: '/admin/category-master/:id?',
+        name: 'CategoryMaster',
+        component: CategoryMaster
+    },
+    {
+        path: '/admin/product-master/:id?',
         name: 'ProductMaster',
         component: ProductMaster
     },

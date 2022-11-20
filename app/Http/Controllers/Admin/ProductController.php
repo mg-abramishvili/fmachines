@@ -24,6 +24,7 @@ class ProductController extends Controller
             'price_usd' => 'required',
             'category_id' => 'required',
             'order' => 'required',
+            'gallery' => 'required',
         ]);
 
         $product = new Product();
@@ -36,6 +37,11 @@ class ProductController extends Controller
         $product->price_usd = $request->price_usd;
         $product->category_id = $request->category_id;
         $product->order = $request->order;
+
+        if (!isset($request->gallery)) {
+            $request->gallery = [];
+        }
+        $product->gallery = $request->gallery;
 
         $product->save();
     }
@@ -51,6 +57,7 @@ class ProductController extends Controller
             'price_usd' => 'required',
             'category_id' => 'required',
             'order' => 'required',
+            'gallery' => 'required',
         ]);
 
         $product = Product::find($id);
@@ -63,6 +70,11 @@ class ProductController extends Controller
         $product->price_usd = $request->price_usd;
         $product->category_id = $request->category_id;
         $product->order = $request->order;
+
+        if (!isset($request->gallery)) {
+            $request->gallery = [];
+        }
+        $product->gallery = $request->gallery;
 
         $product->save();
     }

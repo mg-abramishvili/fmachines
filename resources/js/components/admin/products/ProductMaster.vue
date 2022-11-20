@@ -11,7 +11,7 @@
                         
                         <div class="d-block">
                             <template v-if="$route.params.id">{{ product.name }}</template>
-                            <template v-if="$route.params.id">Новый товар</template>
+                            <template v-if="!$route.params.id">Новый товар</template>
                         </div>
                     </h1>
                 </div>
@@ -136,8 +136,6 @@ export default {
 
             filepond_gallery: [],
             filepond_gallery_edit: [],
-            filepond_docs: [],
-            filepond_docs_edit: [],
 
             views: {
                 loading: true,
@@ -245,6 +243,15 @@ export default {
             })
         },
         save() {
+            if(document.getElementsByName("gallery[]")) {
+                this.gallery = []
+                document.getElementsByName("gallery[]").forEach((i) => {
+                    if(i.value) {
+                        this.gallery.push(i.value)
+                    }
+                })
+            }
+
             if(!this.selected.category) {
                 return this.$swal({
                     text: 'Укажите категорию',
@@ -293,13 +300,18 @@ export default {
                     icon: 'error',
                 })
             }
+            if(!this.gallery) {
+                return this.$swal({
+                    text: 'Укажите фотки',
+                    icon: 'error',
+                })
+            }
 
             this.views.saveButton = false
 
             if(this.$route.params.id) {
                 axios.put(`/_admin/product/${this.$route.params.id}/update`, {
                     name: this.name,
-                    name_eng: this.name_eng,
                     name_eng: this.name_eng,
                     description: this.description,
                     description_eng: this.description_eng,
@@ -326,7 +338,6 @@ export default {
             if(!this.$route.params.id) {
                 axios.post('/_admin/products', {
                     name: this.name,
-                    name_eng: this.name_eng,
                     name_eng: this.name_eng,
                     description: this.description,
                     description_eng: this.description_eng,
