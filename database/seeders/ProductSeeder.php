@@ -22,6 +22,7 @@ class ProductSeeder extends Seeder
                 'price_rub' => 100,
                 'price_usd' => 10,
                 'gallery' => '["\/img\/products\/01\/01-01.jpg","\/img\/products\/01\/01-02.jpg","\/img\/products\/01\/01-03.jpg","\/img\/products\/01\/01-04.jpg","\/img\/products\/01\/01-05.jpg"]',
+                'order' => 10,
             ],
         ]);
     }
