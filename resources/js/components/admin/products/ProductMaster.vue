@@ -319,6 +319,7 @@ export default {
                     price_usd: this.price_usd,
                     category_id: this.selected.category,
                     order: this.order,
+                    gallery: this.gallery,
                 })
                 .then(response => {
                     this.views.saveButton = true
@@ -345,6 +346,7 @@ export default {
                     price_usd: this.price_usd,
                     category_id: this.selected.category,
                     order: this.order,
+                    gallery: this.gallery,
                 })
                 .then(response => {
                     this.views.saveButton = true

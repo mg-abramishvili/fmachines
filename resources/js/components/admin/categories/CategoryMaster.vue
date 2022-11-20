@@ -4,6 +4,11 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <h1>
+                        <template v-if="category.id">
+                            <router-link :to="{name: 'Category', params: {id: category.id} }">Назад</router-link>
+                            <span class="text-muted me-2">/</span>
+                        </template>
+
                         <div class="d-block">
                             <template v-if="$route.params.id">{{ category.name }}</template>
                             <template v-if="!$route.params.id">Новая категория</template>
@@ -145,6 +150,7 @@ export default {
 
                 this.name = response.data.name
                 this.name_eng = response.data.name_eng
+                this.order = response.data.order
 
                 if(response.data.image) {
                     this.filepond_image_edit = [
