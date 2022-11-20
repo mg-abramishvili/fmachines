@@ -25,7 +25,7 @@
                             <tr v-for="(product, index) in category.products">
                                 <td class="text-center text-muted">{{ index + 1 }}</td>
                                 <td>
-                                    <router-link :to="{name: 'Product', params: {id: product.id} }" class="text-decoration-none">
+                                    <router-link :to="{name: 'ProductMaster', params: {id: product.id} }" class="text-decoration-none">
                                         {{ product.name }}
                                         <br><small class="text-muted">{{ product.name_eng }}</small>
                                     </router-link>

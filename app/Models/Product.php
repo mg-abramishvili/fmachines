@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $casts = ['gallery' => 'json'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

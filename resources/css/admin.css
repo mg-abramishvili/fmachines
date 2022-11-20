@@ -277,7 +277,7 @@ body.admin_panel {
     display: none !important;
 }
 .filepond--item {
-    /* width: 24%; */
+    width: 24%;
     height: 150px !important;
     overflow: hidden;
     border-radius: 10px;

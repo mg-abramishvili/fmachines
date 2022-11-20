@@ -5,7 +5,7 @@ import Home from './components/admin/Home.vue'
 import Categories from './components/admin/categories/Index.vue'
 import Category from './components/admin/categories/Category.vue'
 
-import Product from './components/admin/products/Product.vue'
+import ProductMaster from './components/admin/products/ProductMaster.vue'
 
 import Leads from './components/admin/leads/Index.vue'
 
@@ -28,9 +28,9 @@ const routes = [
         component: Category
     },
     {
-        path: '/admin/product/:id',
-        name: 'Product',
-        component: Product
+        path: '/admin/product/:id?',
+        name: 'ProductMaster',
+        component: ProductMaster
     },
     {
         path: '/admin/settings',

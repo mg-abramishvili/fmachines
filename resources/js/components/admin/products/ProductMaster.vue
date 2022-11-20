@@ -10,7 +10,8 @@
                         </template>
                         
                         <div class="d-block">
-                            {{ product.name }}
+                            <template v-if="$route.params.id">{{ product.name }}</template>
+                            <template v-if="$route.params.id">Новый товар</template>
                         </div>
                     </h1>
                 </div>
@@ -68,6 +69,22 @@
 
                 <div class="mb-3">
                     <div class="box mb-4 p-4">
+                        <label class="form-label">Фотки</label>
+                        <file-pond
+                            name="gallery[]"
+                            ref="gallery"
+                            label-idle="Выбрать картинки..."
+                            v-bind:allow-multiple="true"
+                            v-bind:allow-reorder="true"
+                            accepted-file-types="image/jpeg, image/png"
+                            :server="server"
+                            v-bind:files="filepond_gallery_edit"
+                        />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="box mb-4 p-4">
                         <label class="form-label">Описание</label>
                         <ckeditor :editor="editor" v-model="description" :config="editorConfig"></ckeditor>
                     </div>
@@ -117,6 +134,11 @@ export default {
                 category: '',
             },
 
+            filepond_gallery: [],
+            filepond_gallery_edit: [],
+            filepond_docs: [],
+            filepond_docs_edit: [],
+
             views: {
                 loading: true,
                 saveButton: true,
@@ -130,6 +152,47 @@ export default {
                     options: [
                         { model: 'paragraph', title: 'Тег P' },
                     ]
+                },
+            },
+
+            server: {
+                remove(filename, load) {
+                    load('1');
+                },
+                process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                    const formData = new FormData();
+                    formData.append(fieldName, file, file.name);
+                    const request = new XMLHttpRequest();
+                    request.open('POST', '/_admin/file/upload');
+                    request.upload.onprogress = (e) => {
+                        progress(e.lengthComputable, e.loaded, e.total);
+                    };
+                    request.onload = function() {
+                        if (request.status >= 200 && request.status < 300) {
+                            load(request.responseText);
+                        }
+                        else {
+                            error('oh no');
+                        }
+                    };
+                    request.send(formData);
+                    return {
+                        abort: () => {
+                            request.abort();
+                            abort();
+                        }
+                    };
+                },
+                revert: (filename, load) => {
+                    load(filename)
+                },
+                load: (source, load, error, progress, abort, headers) => {
+                    var myRequest = new Request(source);
+                    fetch(myRequest).then(function(response) {
+                        response.blob().then(function(myBlob) {
+                            load(myBlob)
+                        });
+                    });
                 },
             },
         }
@@ -165,10 +228,29 @@ export default {
                 this.price_usd = response.data.price_usd
                 this.order = response.data.order
 
+                if(response.data.gallery) {
+                    this.filepond_gallery_edit = response.data.gallery.map(function(element){
+                        {
+                            return {
+                                source: element,
+                                options: {
+                                    type: 'local',
+                                }
+                            } 
+                        }
+                    })
+                }
+
                 this.views.loading = false
             })
         },
         save() {
+            if(!this.selected.category) {
+                return this.$swal({
+                    text: 'Укажите категорию',
+                    icon: 'error',
+                })
+            }
             if(!this.name) {
                 return this.$swal({
                     text: 'Укажите название',
@@ -178,6 +260,36 @@ export default {
             if(!this.name_eng) {
                 return this.$swal({
                     text: 'Укажите название на английском',
+                    icon: 'error',
+                })
+            }
+            if(!this.description) {
+                return this.$swal({
+                    text: 'Укажите описание',
+                    icon: 'error',
+                })
+            }
+            if(!this.description_eng) {
+                return this.$swal({
+                    text: 'Укажите описание на английском',
+                    icon: 'error',
+                })
+            }
+            if(!this.price_rub) {
+                return this.$swal({
+                    text: 'Укажите цену',
+                    icon: 'error',
+                })
+            }
+            if(!this.price_usd) {
+                return this.$swal({
+                    text: 'Укажите цену',
+                    icon: 'error',
+                })
+            }
+            if(!this.order) {
+                return this.$swal({
+                    text: 'Укажите сортировку',
                     icon: 'error',
                 })
             }
@@ -226,7 +338,7 @@ export default {
                 .then(response => {
                     this.views.saveButton = true
 
-                    this.$router.push({ name: 'Category', params: {id: this.product.category_id} })
+                    this.$router.push({ name: 'Category', params: {id: this.selected.category} })
                 })
                 .catch(errors => {
                     this.views.saveButton = true

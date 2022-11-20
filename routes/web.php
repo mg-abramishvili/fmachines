@@ -34,6 +34,7 @@ Route::put('_admin/category/{id}/update', [App\Http\Controllers\Admin\CategoryCo
 
 // ADMIN PRODUCTS
 Route::get('_admin/product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'product'])->middleware(['auth']);
+Route::post('_admin/products', [App\Http\Controllers\Admin\ProductController::class, 'store'])->middleware(['auth']);
 Route::put('_admin/product/{id}/update', [App\Http\Controllers\Admin\ProductController::class, 'update'])->middleware(['auth']);
 Route::delete('_admin/product/{id}/delete', [App\Http\Controllers\Admin\ProductController::class, 'delete'])->middleware(['auth']);
 
