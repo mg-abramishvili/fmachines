@@ -30,15 +30,15 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        $settings = Setting::find(1);
-        $categories = Category::orderBy('order', 'asc')->get();
+        // $settings = Setting::find(1);
+        // $categories = Category::orderBy('order', 'asc')->get();
 
-        if($settings) {
-            View::share('settings', $settings);
-        }
+        // if($settings) {
+        //     View::share('settings', $settings);
+        // }
 
-        if($categories) {
-            View::share('categories', $categories);
-        }
+        // if($categories) {
+        //     View::share('categories', $categories);
+        // }
     }
 }
