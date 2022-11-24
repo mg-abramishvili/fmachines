@@ -23,6 +23,12 @@ Route::get('product/{id}', function ($id) {
     return view('product', compact('product'));
 });
 
+Route::get('cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+Route::get('_cart_data', [App\Http\Controllers\CartController::class, 'cartData']);
+Route::post('add-to-cart/{product}', [App\Http\Controllers\CartController::class, 'add']);
+Route::get('delete-from-cart/{product}', [App\Http\Controllers\CartController::class, 'delete']);
+Route::post('update-cart', [App\Http\Controllers\CartController::class, 'update']);
+
 Route::get('policy', function () {
     return view('policy');
 });

@@ -151,10 +151,31 @@ header {
     border-radius: 8px;
     justify-content: center;
 }
-.header-top-cart a svg {
+.header-top-cart .cart-icon {
     width: 25px;
     height: 25px;
     margin-right: 10px;
+    position: relative;
+}
+.header-top-cart a svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.header-top-cart .cart-icon span {
+    background-color: #ff37a3;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    border-radius: 100%;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: -5px;
+    right: -5px;
 }
 .header-bottom {
     background-color: rgba(255,255,255,0.1);

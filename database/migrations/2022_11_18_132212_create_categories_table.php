@@ -12,8 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('name_eng');
-            $table->string('image');
             $table->string('slug')->nullable();
+            $table->integer('parent_id')->nullable();
+            $table->string('image');
             $table->integer('order')->default(999);
             $table->timestamps();
         });

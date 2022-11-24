@@ -30,7 +30,13 @@
                     </div>
 
                     <div class="addtocart">
-                        <button class="btn btn-standard">Добавить в корзину</button>
+                        <add-to-cart
+                            lang="{{ app()->getLocale() }}"
+                            
+                            @if($product)
+                                :product="{{ $product->id }}"
+                            @endif
+                        />
                     </div>
                 </div>
             </div>

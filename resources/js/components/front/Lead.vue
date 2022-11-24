@@ -21,8 +21,8 @@
             </div>
         </div>
         <div class="form-check mb-4">
-            <input v-model="policy" class="form-check-input" type="checkbox" :id="'check_' + service">
-            <label class="form-check-label" :for="'check_' + service">
+            <input v-model="policy" class="form-check-input" type="checkbox" :id="'check_'">
+            <label class="form-check-label" :for="'check_'">
                 Согласен с обработкой персональных данных
                 <a href="/policy" target="_blank">(!)</a>
             </label>
