@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('order')->default(999);
             $table->text('gallery');
             $table->string('slug')->nullable();
+            $table->string('video')->nullable();
             $table->timestamps();
         });
     }

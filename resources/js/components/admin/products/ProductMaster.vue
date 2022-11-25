@@ -95,6 +95,22 @@
 
                 <div class="mb-3">
                     <div class="box mb-4 p-4">
+                        <label class="form-label">Видео</label>
+                        <file-pond
+                            name="video"
+                            ref="video"
+                            label-idle="Выбрать файл..."
+                            v-bind:allow-multiple="false"
+                            v-bind:allow-reorder="false"
+                            accepted-file-types="video/mp4"
+                            :server="server"
+                            v-bind:files="filepond_video_edit"
+                        />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="box mb-4 p-4">
                         <label class="form-label">Описание</label>
                         <ckeditor :editor="editor" v-model="description" :config="editorConfig"></ckeditor>
                     </div>
@@ -137,6 +153,7 @@ export default {
             price_rub: 0,
             price_usd: 0,
             order: 0,
+            video: '',
 
             categories: [],
 
@@ -146,6 +163,8 @@ export default {
 
             filepond_gallery: [],
             filepond_gallery_edit: [],
+            filepond_video: [],
+            filepond_video_edit: [],
 
             watermark: 'w1',
 
@@ -238,6 +257,17 @@ export default {
                 this.price_rub = response.data.price_rub
                 this.price_usd = response.data.price_usd
                 this.order = response.data.order
+                
+                if(response.data.video) {
+                    this.filepond_video_edit = [
+                        {
+                            source: response.data.video,
+                            options: {
+                                type: 'local',
+                            }
+                        }
+                    ]
+                }
 
                 if(response.data.gallery) {
                     this.filepond_gallery_edit = response.data.gallery.map(function(element){
@@ -333,6 +363,7 @@ export default {
                     category_id: this.selected.category,
                     order: this.order,
                     gallery: this.gallery,
+                    video: this.video,
                 })
                 .then(response => {
                     this.views.saveButton = true
@@ -360,6 +391,7 @@ export default {
                     category_id: this.selected.category,
                     order: this.order,
                     gallery: this.gallery,
+                    video: this.video,
                 })
                 .then(response => {
                     this.views.saveButton = true
