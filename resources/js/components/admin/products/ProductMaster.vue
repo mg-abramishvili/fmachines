@@ -69,6 +69,16 @@
 
                 <div class="mb-3">
                     <div class="box mb-4 p-4">
+                        <div class="form-check">
+                            <input type="radio" id="w1" v-model="watermark" value="w1" class="form-check-input">
+                            <label for="w1" class="form-check-label">Водяной знак (наклонный текст)</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" id="w2" v-model="watermark" value="w2" class="form-check-input">
+                            <label for="w2" class="form-check-label">Водяной знак (прямой текст)</label>
+                        </div>
+                        <p class="text-muted mb-4"><small>При изменении водяного знака, все фотки придется загружать заново!</small></p>
+
                         <label class="form-label">Фотки</label>
                         <file-pond
                             name="gallery[]"
@@ -137,6 +147,8 @@ export default {
             filepond_gallery: [],
             filepond_gallery_edit: [],
 
+            watermark: 'w1',
+
             views: {
                 loading: true,
                 saveButton: true,
@@ -160,6 +172,7 @@ export default {
                 process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                     const formData = new FormData();
                     formData.append(fieldName, file, file.name);
+                    formData.append('watermark', this.watermark);
                     const request = new XMLHttpRequest();
                     request.open('POST', '/_admin/file/upload');
                     request.upload.onprogress = (e) => {

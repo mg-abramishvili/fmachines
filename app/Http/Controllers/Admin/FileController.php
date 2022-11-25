@@ -24,6 +24,20 @@ class FileController extends Controller
                 $img = Image::make($file->path());
                 
                 // watermark process
+                if($request->watermark == 'w1')
+                {
+                    $watermarkAngle = 30;
+                    $watermarkMarginX = 900;
+                    $watermarkMarginY = 900;
+                }
+
+                if($request->watermark == 'w2')
+                {
+                    $watermarkAngle = 0;
+                    $watermarkMarginX = 1500;
+                    $watermarkMarginY = 900;
+                }
+
                 $x = 0;
 
                 while ($x < $img->width())
@@ -32,20 +46,20 @@ class FileController extends Controller
              
                     while($y < $img->height())
                     {
-                        $img->text('FuckingMachines.ru', $x, $y, function($font)
+                        $img->text('FuckingMachines.ru', $x, $y, function($font) use($watermarkAngle, $watermarkMarginX, $watermarkMarginY)
                         {
                             $font->file(public_path('/img/NexaTextBold.ttf'));
                             $font->size(120);
                             $font->color([255, 255, 255, 0.07]);
                             $font->align('center');
                             $font->valign('center');
-                            $font->angle(30);
+                            $font->angle($watermarkAngle);
                         });
 
-                        $y += 900;
+                        $y += $watermarkMarginY;
                     }
              
-                    $x += 900;
+                    $x += $watermarkMarginX;
                 }
 
                 $img->resize(2500, 2500, function ($const) {
