@@ -35,7 +35,7 @@
                 .then(response => {
                     this.getCartInfo()
 
-                    this.emitter.emit('cart', '1')
+                    this.emitter.emit('cart', this.cart)
                 })
             },
         },
