@@ -43,7 +43,7 @@
             
             @if($product->video)
                 <div class="video">
-                    <video src="{{ $product->video }}" controls controlsList="nodownload"></video>
+                    <video src="{{ $product->video }}" controls controlsList="nodownload noplaybackrate" disablePictureInPicture ></video>
                 </div>
             @endif
 
