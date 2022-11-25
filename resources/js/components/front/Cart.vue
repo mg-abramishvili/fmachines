@@ -182,7 +182,7 @@
                 .then(response => {
                     this.getCartInfo()
 
-                    if(!this.cart.length) {
+                    if(this.cart.length == 0) {
                         window.location.href = "/cart"
                     }
                 })
