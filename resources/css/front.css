@@ -484,6 +484,16 @@ header {
 .product-page .flickity-prev-next-button.next {
     right: 50px;
 }
+.product-page .video {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.product-page .video video {
+    width: 600px;
+    display: block;
+    margin: 0 auto;
+}
+
 /* PRODUCT PAGE */
 
 /* CART PAGE */

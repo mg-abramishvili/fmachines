@@ -40,6 +40,13 @@
                     </div>
                 </div>
             </div>
+            
+            @if($product->video)
+                <div class="video">
+                    <video src="{{ $product->video }}"></video>
+                </div>
+            @endif
+
             <div class="description">
                 @if(app()->getLocale() == 'en')
                     {!! $product->description_eng !!}

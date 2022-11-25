@@ -295,6 +295,10 @@ export default {
                 })
             }
 
+            if(document.getElementsByName("video")[0]) {
+                this.video = document.getElementsByName("video")[0].value
+            }
+
             if(!this.selected.category) {
                 return this.$swal({
                     text: 'Укажите категорию',

@@ -37,6 +37,7 @@ class ProductController extends Controller
         $product->price_usd = $request->price_usd;
         $product->category_id = $request->category_id;
         $product->order = $request->order;
+        $product->video = $request->video;
 
         if (!isset($request->gallery)) {
             $request->gallery = [];
@@ -70,6 +71,7 @@ class ProductController extends Controller
         $product->price_usd = $request->price_usd;
         $product->category_id = $request->category_id;
         $product->order = $request->order;
+        $product->video = $request->video;
 
         if (!isset($request->gallery)) {
             $request->gallery = [];
