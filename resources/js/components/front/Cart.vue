@@ -181,6 +181,10 @@
                 axios.get(`/delete-from-cart/${sku}`)
                 .then(response => {
                     this.getCartInfo()
+
+                    if(!this.cart.length) {
+                        window.location.href = "/cart"
+                    }
                 })
             },
             save() {
