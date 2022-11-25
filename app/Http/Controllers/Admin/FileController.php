@@ -22,7 +22,33 @@ class FileController extends Controller
                 }
 
                 $img = Image::make($file->path());
-                $img->resize(1200, 1200, function ($const) {
+                
+                // watermark process
+                $x = 0;
+
+                while ($x < $img->width())
+                {
+                    $y = 0;
+             
+                    while($y < $img->height())
+                    {
+                        $img->text('FuckingMachines.ru', $x, $y, function($font)
+                        {
+                            $font->file(public_path('/img/NexaTextBold.ttf'));
+                            $font->size(120);
+                            $font->color([255, 255, 255, 0.07]);
+                            $font->align('center');
+                            $font->valign('center');
+                            $font->angle(30);
+                        });
+
+                        $y += 900;
+                    }
+             
+                    $x += 900;
+                }
+
+                $img->resize(2500, 2500, function ($const) {
                     $const->aspectRatio();
                 })->save(public_path() . '/uploads/products/' . $filename);
 
