@@ -38,8 +38,14 @@ class CategorySeeder extends Seeder
             ],
             [
                 'id' => 5,
-                'name' => 'Option',
-                'name_eng' => 'Option',
+                'name' => 'Option Custom',
+                'name_eng' => 'Option Custom',
+                'image' => '/img/cat1.jpg',
+            ],
+            [
+                'id' => 6,
+                'name' => 'Merch',
+                'name_eng' => 'Merch',
                 'image' => '/img/cat1.jpg',
             ],
         ]);

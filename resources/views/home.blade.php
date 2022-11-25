@@ -61,7 +61,7 @@
     <div class="main-catalog p11">
         <div class="container">
             <div class="row justify-content-center">
-                @foreach($categories as $category)
+                @foreach($categories->take(5) as $category)
                     <div class="col-12 col-lg-4">
                         <div class="main-catalog-item">
                             <a href="/catalog/{{ $category->id }}">

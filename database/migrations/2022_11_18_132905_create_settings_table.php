@@ -12,9 +12,13 @@ return new class extends Migration
             $table->id();
             $table->text('about_text');
             $table->text('about_text_eng');
-            $table->string('telegram');
-            $table->string('whatsapp');
             $table->string('video_bg')->nullable();
+            $table->string('email')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('telegram')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('onlyfans')->nullable();
             $table->timestamps();
         });
     }

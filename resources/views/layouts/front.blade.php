@@ -51,7 +51,7 @@
                             <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
                                 <div class="navbar-collapse collapse" id="navbarsExample10" style="">
                                     <ul class="navbar-nav">
-                                        @foreach($categories as $category)
+                                        @foreach($categories->take(5) as $category)
                                             <li class="nav-item">
                                                 <a href="/catalog/{{ $category->id }}" class="nav-link">
                                                     @if(app()->getLocale() == 'en')
@@ -81,7 +81,24 @@
                             </div>
                             <div class="offcanvas-body">
                                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                    @foreach($categories as $category)
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/">Главная</a>
+                                    </li>
+                                    @foreach($categories->take(5) as $category)
+                                        <li class="nav-item">
+                                            <a href="/catalog/{{ $category->id }}" class="nav-link">
+                                                @if(app()->getLocale() == 'en')
+                                                    {{ $category->name_eng }}
+                                                @else
+                                                    {{ $category->name }}
+                                                @endif
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">VHS</a>
+                                    </li>
+                                    @foreach($categories->skip(5) as $category)
                                         <li class="nav-item">
                                             <a href="/catalog/{{ $category->id }}" class="nav-link">
                                                 @if(app()->getLocale() == 'en')
@@ -102,7 +119,13 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Custom Furniture</a>
+                                        <a class="nav-link" href="#">
+                                            @if(app()->getLocale() == 'en')
+                                                Project History
+                                            @else
+                                                История проекта
+                                            @endif
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
@@ -110,15 +133,6 @@
                                                 Partnership
                                             @else
                                                 Сотрудничество
-                                            @endif
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">
-                                            @if(app()->getLocale() == 'en')
-                                                Project History
-                                            @else
-                                                История проекта
                                             @endif
                                         </a>
                                     </li>
