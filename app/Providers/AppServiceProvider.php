@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         $settings = Setting::find(1);
-        $categories = Category::orderBy('order', 'asc')->get();
+        $categories = Category::where('parent_id', null)->orderBy('order', 'asc')->get();
 
         View::share('settings', $settings);
 

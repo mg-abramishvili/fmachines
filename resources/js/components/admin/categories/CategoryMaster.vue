@@ -25,13 +25,25 @@
                 <div class="mb-3">
                     <div class="box mb-4 p-4">
                         <div class="row">
-                            <div class="col-12 col-lg-5">
+                            <div class="col-12 col-lg-6 mb-4">
                                 <label class="form-label">Название (RUS)</label>
                                 <input v-model="name" type="text" class="form-control">
                             </div>
-                            <div class="col-12 col-lg-5">
+                            <div class="col-12 col-lg-6 mb-4">
                                 <label class="form-label">Название (ENG)</label>
                                 <input v-model="name_eng" type="text" class="form-control">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label class="form-label">Родительская категория</label>
+                                <select v-model="selected.parent" class="form-select">
+                                    <template v-if="$route.params.id" v-for="cat in categories">
+                                        <option v-if="cat.id != $route.params.id" :value="cat.id">{{ cat.name }}</option>
+                                    </template>
+
+                                    <template v-else v-for="cat in categories">
+                                        <option :value="cat.id">{{ cat.name }}</option>
+                                    </template>
+                                </select>
                             </div>
                             <div class="col-12 col-lg-2">
                                 <label class="form-label">Сортировка</label>
@@ -80,10 +92,16 @@ export default {
         return {
             category: {},
 
+            categories: [],
+
             name: '',
             name_eng: '',
             order: 0,
             image: '',
+
+            selected: {
+                parent: '',
+            },
 
             filepond_image: [],
             filepond_image_edit: [],
@@ -136,6 +154,8 @@ export default {
         }
     },
     created() {
+        this.loadCategories()
+
         if(this.$route.params.id) {
             this.loadCategory()
         } else {
@@ -143,6 +163,12 @@ export default {
         }
     },
     methods: {
+        loadCategories() {
+            axios.get('/_admin/categories')
+            .then(response => {
+                this.categories = response.data
+            })
+        },
         loadCategory() {
             axios.get(`/_admin/category/${this.$route.params.id}`)
             .then(response => {
@@ -151,6 +177,7 @@ export default {
                 this.name = response.data.name
                 this.name_eng = response.data.name_eng
                 this.order = response.data.order
+                this.selected.parent = response.data.parent_id
 
                 if(response.data.image) {
                     this.filepond_image_edit = [
@@ -204,6 +231,7 @@ export default {
                     name_eng: this.name_eng,
                     image: this.image,
                     order: this.order,
+                    parent_id: this.selected.parent,
                 })
                 .then(response => {
                     this.views.saveButton = true
@@ -226,11 +254,12 @@ export default {
                     name_eng: this.name_eng,
                     image: this.image,
                     order: this.order,
+                    parent_id: this.selected.parent,
                 })
                 .then(response => {
                     this.views.saveButton = true
 
-                    this.$router.push({ name: 'Category', params: {id: this.selected.category} })
+                    this.$router.push({ name: 'Category', params: {id: response.data} })
                 })
                 .catch(errors => {
                     this.views.saveButton = true

@@ -4,8 +4,15 @@
             <div class="row align-items-center">
                 <div class="col-12 col-md-7">
                     <h1>
-                        <router-link :to="{name: 'Categories'}">Каталог</router-link>
-                        <span class="text-muted me-2">/</span> 
+                        <template v-if="category.parent_id">
+                            <router-link :to="{name: 'Category', params: {id: category.parent_id} }">Назад</router-link>
+                            <span class="text-muted me-2">/</span>
+                        </template>
+                        <template v-else>
+                            <router-link :to="{name: 'Categories'}">Каталог</router-link>
+                            <span class="text-muted me-2">/</span>
+                        </template>
+
                         {{ category.name }}
                         <router-link v-if="category.id" :to="{name: 'CategoryMaster', params: {id: category.id} }" class="btn btn-sm btn-outline-secondary ms-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -22,6 +29,20 @@
         </div>
 
         <Loader v-if="views.loading" />
+
+        <div v-if="!views.loading && category.children" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+            <div class="w-100">
+                <div class="row">
+                    <div v-for="children in category.children" class="col-12 col-lg-4">
+                        <div class="box mb-4">
+                            <router-link :to="{name: 'Category', params: {id: children.id} }" class="d-flex align-items-center fw-bold p-4" style="height: 100px;">
+                                {{ children.name }}
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div v-if="!views.loading" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <div class="w-100">

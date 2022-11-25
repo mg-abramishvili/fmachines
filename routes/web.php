@@ -12,7 +12,7 @@ Route::get('/', function () {
 });
 
 Route::get('catalog/{id}', function ($id) {
-    $category = Category::with('products')->find($id);
+    $category = Category::with('children', 'products')->find($id);
 
     return view('category', compact('category'));
 });
@@ -52,6 +52,7 @@ Route::post('_admin/settings', [App\Http\Controllers\Admin\SettingController::cl
 
 // ADMIN CATEGORIES
 Route::get('_admin/categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->middleware(['auth']);
+Route::post('_admin/categories', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->middleware(['auth']);
 Route::get('_admin/category/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'category'])->middleware(['auth']);
 Route::put('_admin/category/{id}/update', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->middleware(['auth']);
 

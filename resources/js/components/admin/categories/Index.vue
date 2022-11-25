@@ -6,7 +6,8 @@
                     <h1>Каталог</h1>
                 </div>
                 <div class="col-12 col-lg-5 text-end">
-                    <router-link :to="{name: 'ProductMaster'}" class="btn btn-primary">Добавить товар</router-link>
+                    <router-link :to="{name: 'ProductMaster'}" class="btn btn-primary me-2">Добавить товар</router-link>
+                    <router-link :to="{name: 'CategoryMaster'}" class="btn btn-primary">Добавить категорию</router-link>
                 </div>
             </div>
         </div>

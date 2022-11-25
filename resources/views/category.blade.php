@@ -10,6 +10,31 @@
                 @endif
             </h1>
 
+            @if($category->children->count())
+                <div class="main-catalog p11">
+                    <div class="row">
+                        @foreach($category->children as $child)
+                            <div class="col-12 col-lg-4">
+                                <div class="main-catalog-item">
+                                    <a href="/catalog/{{ $child->id }}">
+                                        <div class="main-catalog-item-image">
+                                            <div class="main-catalog-item-image-inner" style="background-image: url({{ $child->image }})"></div>
+                                        </div>
+                                        <h2 class="main-catalog-item-name">
+                                            @if(app()->getLocale() == 'en')
+                                                {{ $child->name_eng }}
+                                            @else
+                                                {{ $child->name }}
+                                            @endif
+                                        </h2>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <div class="category-page-list">
                 <div class="row">
                     @forelse($category->products as $product)
