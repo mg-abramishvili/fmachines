@@ -28,14 +28,14 @@
                     this.cart = response.data
 
                     this.views.loading = false
+
+                    this.emitter.emit('cart', response.data)
                 })
             },
             add() {
                 axios.post(`/add-to-cart/${this.product}`)
                 .then(response => {
                     this.getCartInfo()
-
-                    this.emitter.emit('cart', this.cart)
                 })
             },
         },

@@ -138,6 +138,10 @@
                 axios.get('/_cart_data')
                 .then(response => {
                     this.cart = response.data
+
+                    if(this.cart.length === 0) {
+                        window.location.href = "/cart"
+                    }
                 })
             },
             updateCart() {
@@ -181,10 +185,6 @@
                 axios.get(`/delete-from-cart/${sku}`)
                 .then(response => {
                     this.getCartInfo()
-
-                    if(this.cart.length == 0) {
-                        window.location.href = "/cart"
-                    }
                 })
             },
             save() {
