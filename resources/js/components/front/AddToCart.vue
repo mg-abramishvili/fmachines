@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a v-if="cart.find(i => i.id == product)" href="/cart" class="btn btn-standard">В корзине</a>
+        <a v-if="cart && cart.find(i => i.id == product)" href="/cart" class="btn btn-standard">В корзине</a>
         
         <button v-else @click="add()" class="btn btn-standard">Добавить в корзину</button>
     </div>
