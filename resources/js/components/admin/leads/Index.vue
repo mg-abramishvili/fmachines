@@ -17,27 +17,23 @@
             <div class="w-100">
                 <div v-if="leads.length" class="box mb-4">
                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Дата</th>
-                                <th>Тема</th>
-                                <th>Имя</th>
-                                <th>Телефон</th>
-                                <th>Статус</th>
-                            </tr>
-                        </thead>
                         <tbody>
                             <tr v-for="lead in leads" :key="lead.id">
-                                <td class="w-25">{{ $filters.datetime(lead.created_at) }}</td>
                                 <td>
-                                    <template v-if="lead.subject == 'bank_card'">Банковская карта</template>
-                                    <template v-if="lead.subject == 'loan'">Денежный займ</template>
+                                    {{ $filters.date(lead.created_at) }}
                                 </td>
-                                <td>{{ lead.name }}</td>
-                                <td>{{ lead.phone }}</td>
                                 <td>
-                                    <span @click="changeStatus(lead.id, 'created')" v-if="lead.status == 'created'" class="badge bg-warning" style="cursor:pointer">Принята в работу</span>
-                                    <span @click="changeStatus(lead.id, 'completed')" v-if="lead.status == 'completed'" class="badge bg-success" style="cursor:pointer">Заявка обработана</span>
+                                    {{ lead.subject }}
+                                </td>
+                                <td>
+                                    Имя: {{ lead.name }}<br>Телефон: {{ lead.tel }}
+                                </td>
+                                <td>
+                                    <ul v-if="lead.order">
+                                        <li v-for="cartItem in lead.order">
+                                            - {{ cartItem.name }} ({{ cartItem.quantity }} шт)
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         </tbody>
@@ -56,10 +52,6 @@ export default {
     data() {
         return {
             leads: [],
-
-            selected: {
-                status: 'all',
-            },
 
             views: {
                 loading: true,

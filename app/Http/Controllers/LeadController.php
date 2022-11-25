@@ -11,15 +11,30 @@ class LeadController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'phone' => 'required',
+            'tel' => 'required',
         ]);
 
         $lead = new Lead();
 
         $lead->name = $request->name;
-        $lead->phone = $request->phone;
-        $lead->subject = "Заявка с сайта";
+        $lead->tel = $request->tel;
+
+        if($request->subject) {
+            $lead->subject = $request->subject;
+        } else {
+            $lead->subject = "Заявка с сайта";
+        }
+
+        if($request->order)
+        {
+            $lead->order = $request->order;
+        }
 
         $lead->save();
+
+        if($request->order)
+        {
+            session()->forget('cart');
+        }
     }
 }

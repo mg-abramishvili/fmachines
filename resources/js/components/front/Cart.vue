@@ -1,12 +1,16 @@
 <template>
-    <div v-if="cart && lang" class="cart-wrapper">
+    <div class="cart-wrapper">
         <div v-if="views.loading" class="card-loader">
             <div class="spinner-border text-dark" role="status">
                 <span class="visually-hidden">Загрузка...</span>
             </div>
         </div>
 
-        <div class="row">
+        <div v-if="views.success">
+            Ваш заказ успешно оформлен!
+        </div>
+
+        <div v-if="cart && lang && !views.success" class="row">
             <div class="col-12 col-lg-12">
                 <div v-for="cartItem in cart" :key="'cartItem_' + cartItem.sku" class="cart-item">
                     <div class="row align-items-center">
@@ -42,6 +46,12 @@
             </div>
             <div class="col-12 col-lg-12">
                 <div class="cart-panel">
+                    <div v-if="views.error" class="alert alert-danger">
+                        <small v-for="error in errors" class="d-block">
+                            {{ error }}
+                        </small>
+                    </div>
+
                     <div class="row align-items-end">
                         <div class="col-12 col-lg-9">
                             <div class="row">
@@ -54,9 +64,16 @@
                                     <input v-model="tel" type="text" class="form-control">
                                 </div>
                             </div>
+                            <div class="form-check mb-4">
+                                <input v-model="policy" class="form-check-input" type="checkbox" :id="'check_'">
+                                <label class="form-check-label" :for="'check_'">
+                                    Согласен с обработкой персональных данных
+                                    <a href="/policy" target="_blank">(!)</a>
+                                </label>
+                            </div>
                         </div>
                         <div class="col-12 col-lg-3">
-                            <button class="btn btn-standard w-100">Оформить заказ</button>
+                            <button @click="save()" class="btn btn-standard w-100">Оформить заказ</button>
                         </div>
                     </div>
                 </div>
@@ -76,9 +93,14 @@
 
                 name: '',
                 tel: '',
+                policy: false,
+
+                errors: [],
                 
                 views: {
                     loading: true,
+                    success: false,
+                    error: false,
                 },
             };
         },
@@ -156,10 +178,46 @@
                 this.updateCart()
             },
             remove(sku) {
-                axios
-                .get(`/delete-from-cart/${sku}`)
+                axios.get(`/delete-from-cart/${sku}`)
                 .then(response => {
                     this.getCartInfo()
+                })
+            },
+            save() {
+                this.views.error = false
+
+                this.errors = []
+
+                if(!this.name) {
+                    this.errors.push('Укажите имя')
+                }
+                if(!this.tel) {
+                    this.errors.push('Укажите телефон')
+                }
+                if(!this.policy) {
+                    this.errors.push('Нужно согласиться с обработкой персональных данных')
+                }
+                if(this.errors.length > 0) {
+                    this.views.error = true
+                    return
+                }
+                
+                axios.post('/_leads', {
+                    name: this.name,
+                    tel: this.tel,
+                    subject: 'Заказ',
+                    order: this.cart,
+                })
+                .then(response => {
+                    this.name = ''
+                    this.tel = ''
+                    this.policy = false
+        
+                    this.views.success = true
+        
+                    setTimeout(() => {
+                        window.location.href = "/"
+                    }, 5000)
                 })
             },
         },

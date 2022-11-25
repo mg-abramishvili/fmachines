@@ -17,7 +17,7 @@
             </div>
             <div class="col-12 mb-4">
                 <label class="fw-bold">Телефон</label>
-                <input v-model="phone" type="text" class="form-control" placeholder="Ваш номер телефона">
+                <input v-model="tel" type="text" class="form-control" placeholder="Ваш номер телефона">
             </div>
         </div>
         <div class="form-check mb-4">
@@ -36,7 +36,7 @@ export default {
     data() {
         return {
             name: '',
-            phone: '',
+            tel: '',
             policy: false,
             errors: [],
             views: {
@@ -54,7 +54,7 @@ export default {
             if(!this.name) {
                 this.errors.push('Укажите имя')
             }
-            if(!this.phone) {
+            if(!this.tel) {
                 this.errors.push('Укажите телефон')
             }
             if(!this.policy) {
@@ -67,11 +67,11 @@ export default {
             
             axios.post('/_leads', {
                 name: this.name,
-                phone: this.phone,
+                tel: this.tel,
             })
             .then(response => {
                 this.name = ''
-                this.phone = ''
+                this.tel = ''
                 this.policy = false
     
                 this.views.success = true
