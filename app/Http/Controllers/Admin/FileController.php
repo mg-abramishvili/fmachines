@@ -100,7 +100,7 @@ class FileController extends Controller
 
             $file->move(public_path() . '/uploads/videos', $filename);
 
-            return \Response::make('/uploads/videos' . $filename, 200, [
+            return \Response::make('/uploads/videos', $filename, 200, [
                 'Content-Disposition' => 'inline',
             ]);
         }
