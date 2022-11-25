@@ -42,25 +42,17 @@
             </div>
             
             @if($product->video)
-                <div class="row">
-                    <div class="col-12">
-                        <div class="video">
-                            <video src="{{ $product->video }}" controls controlsList="nodownload"></video>
-                        </div>
-                    </div>
+                <div class="video">
+                    <video src="{{ $product->video }}" controls controlsList="nodownload"></video>
                 </div>
             @endif
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="description">
-                        @if(app()->getLocale() == 'en')
-                            {!! $product->description_eng !!}
-                        @else
-                            {!! $product->description !!}
-                        @endif
-                    </div>
-                </div>
+            <div class="description">
+                @if(app()->getLocale() == 'en')
+                    {!! $product->description_eng !!}
+                @else
+                    {!! $product->description !!}
+                @endif
             </div>
         </div>
     </div>
