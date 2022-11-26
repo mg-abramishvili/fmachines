@@ -198,5 +198,7 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/flickity.pkgd.min.js"></script>
     @vite('resources/js/front.js')
+    
+    @yield('scripts')
 </body>
 </html>
