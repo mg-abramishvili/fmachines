@@ -94,24 +94,24 @@
                     <div class="random-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "pageDots": false }'>
                         @foreach($random as $randomProduct)
                             <div class="carousel-cell">
-                                <a href="/product/{{ $product->id }}" class="category-page-list-item">
+                                <a href="/product/{{ $random->id }}" class="category-page-list-item">
                                     <div class="category-page-list-item-image">
-                                        <img src="{{ $product->gallery[0] }}" alt="{{ $product->name }}">
+                                        <img src="{{ $random->gallery[0] }}" alt="{{ $random->name }}">
                                     </div>
 
                                     <span>
                                         @if(app()->getLocale() == 'en')
-                                            ${{ $product->price_usd }}
+                                            ${{ $random->price_usd }}
                                         @else
-                                            {{ $product->price_rub }} ₽
+                                            {{ $random->price_rub }} ₽
                                         @endif
                                     </span>
 
                                     <h3>
                                         @if(app()->getLocale() == 'en')
-                                            {{ $product->name_eng }}
+                                            {{ $random->name_eng }}
                                         @else
-                                            {{ $product->name }}
+                                            {{ $random->name }}
                                         @endif
                                     </h3>
                                 </a>
