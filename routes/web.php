@@ -21,8 +21,8 @@ Route::get('product/{id}', function ($id) {
     $product = Product::find($id);
     $random = Product::query()
     ->where('id', '!=', $id)
-    ->where('category_id', '=', $product->category_id)
-    ->inRandomOrder()
+    // ->where('category_id', '=', $product->category_id)
+    // ->inRandomOrder()
     ->limit(6)
     ->get();
 
