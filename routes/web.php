@@ -19,8 +19,9 @@ Route::get('catalog/{id}', function ($id) {
 
 Route::get('product/{id}', function ($id) {
     $product = Product::find($id);
+    $random = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->inRandomOrder()->limit(6)->get();
 
-    return view('product', compact('product'));
+    return view('product', compact('product', 'random'));
 });
 
 Route::get('cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');

@@ -566,6 +566,28 @@ header {
     display: block;
     margin: 0 auto;
 }
+.random .title-head {
+    color: #ff37a3;
+}
+.random-carousel .carousel-cell {
+    width: 25%;
+}
+.random-carousel .category-page-list-item-image {
+    height: 170px;
+}
+.random .flickity-prev-next-button {
+    top: 85px;
+    z-index: 100;
+}
+.random .flickity-prev-next-button.previous {
+    left: 0px;
+}
+.random .flickity-prev-next-button.next {
+    right: 0px;
+}
+.random .category-page-list-item h3 {
+    font-size: 16px;
+}
 /* PRODUCT PAGE */
 
 /* CART PAGE */
