@@ -48,7 +48,7 @@ class FileController extends Controller
                     {
                         $img->text('FuckingMachines.ru', $x, $y, function($font) use($watermarkAngle, $watermarkMarginX, $watermarkMarginY)
                         {
-                            $font->file(public_path('/img/NexaTextBold.ttf'));
+                            $font->file(public_path('/img/font/NexaTextBold.ttf'));
                             $font->size(120);
                             $font->color([255, 255, 255, 0.07]);
                             $font->align('center');

@@ -4,6 +4,59 @@ body {
     font-size: 18px;
     color: #fff;
     font-weight: 300;
+    position: relative;
+}
+
+.age {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999999;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.age-inner {
+    text-align: center;
+}
+.age-circle {
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    color: #fff;
+    background-color: #ff37a3;
+    font-size: 70px;
+    font-weight: 700;
+    border-radius: 100%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+.age-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.age-buttons a,
+.age-buttons button {
+    box-shadow: none;
+    border: 1px solid #ff37a3;
+    font-size: 14px;
+    background-color: transparent;
+    padding: 10px 25px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 6px;
 }
 
 @media (min-width: 992px) {

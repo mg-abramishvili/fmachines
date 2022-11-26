@@ -36,6 +36,9 @@ Route::get('policy', function () {
 
 Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
 
+Route::get('_age', [App\Http\Controllers\AgeController::class, 'index']);
+Route::post('_age', [App\Http\Controllers\AgeController::class, 'store']);
+
 // ADMIN
 Route::get('admin', function () {
     return view('layouts.admin');

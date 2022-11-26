@@ -1,7 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
-/public/img
+/public/img/font
+/public/img/video
+/public/img/categories
+/public/img/products
 /public/uploads
 /public/storage
 /storage/*.key

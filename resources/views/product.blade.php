@@ -88,36 +88,38 @@
                 @endif
             </div>
 
-            <div class="random">
-                <h5 class="title-head">Похожие товары</h5>
-                <div class="random-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "pageDots": false }'>
-                    @foreach($random as $randomProduct)
-                        <div class="carousel-cell">
-                            <a href="/product/{{ $product->id }}" class="category-page-list-item">
-                                <div class="category-page-list-item-image">
-                                    <img src="{{ $product->gallery[0] }}" alt="{{ $product->name }}">
-                                </div>
+            @if($random->count())
+                <div class="random">
+                    <h5 class="title-head">Похожие товары</h5>
+                    <div class="random-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true, "pageDots": false }'>
+                        @foreach($random as $randomProduct)
+                            <div class="carousel-cell">
+                                <a href="/product/{{ $product->id }}" class="category-page-list-item">
+                                    <div class="category-page-list-item-image">
+                                        <img src="{{ $product->gallery[0] }}" alt="{{ $product->name }}">
+                                    </div>
 
-                                <span>
-                                    @if(app()->getLocale() == 'en')
-                                        ${{ $product->price_usd }}
-                                    @else
-                                        {{ $product->price_rub }} ₽
-                                    @endif
-                                </span>
+                                    <span>
+                                        @if(app()->getLocale() == 'en')
+                                            ${{ $product->price_usd }}
+                                        @else
+                                            {{ $product->price_rub }} ₽
+                                        @endif
+                                    </span>
 
-                                <h3>
-                                    @if(app()->getLocale() == 'en')
-                                        {{ $product->name_eng }}
-                                    @else
-                                        {{ $product->name }}
-                                    @endif
-                                </h3>
-                            </a>
-                        </div>
-                    @endforeach
+                                    <h3>
+                                        @if(app()->getLocale() == 'en')
+                                            {{ $product->name_eng }}
+                                        @else
+                                            {{ $product->name }}
+                                        @endif
+                                    </h3>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection
@@ -129,17 +131,21 @@
             let videoModalBtnClose = document.querySelector(".btn-video-close")
             let video = document.querySelector("#product-video video")
             
-            videoModalBtn.addEventListener("click", function() {
-                setTimeout(() => {
+            if(videoModalBtn) {
+                videoModalBtn.addEventListener("click", function() {
+                    setTimeout(() => {
+                        video.pause()
+                        video.load()
+                        video.play()
+                    }, 500)
+                })
+            }
+            
+            if(videoModalBtnClose) {
+                videoModalBtnClose.addEventListener("click", function() {
                     video.pause()
-                    video.load()
-                    video.play()
-                }, 500)
-            })
-
-            videoModalBtnClose.addEventListener("click", function() {
-                video.pause()
-            })
+                })
+            }
         })
     </script>
 @endsection

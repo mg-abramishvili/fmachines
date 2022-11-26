@@ -17,6 +17,8 @@
 </head>
 <body>
     <div id="front">
+        <!-- <age /> -->
+
         <header>
             <div class="header-top">
                 <div class="container">
@@ -158,14 +160,40 @@
         <footer>
             <div class="container">
                 <div class="socials">
-                    <a href="{{ $settings->telegram }}">
-                        <img src="/img/telegram.svg" alt="">
-                        <span>Telegram</span>
-                    </a>
-                    <a href="{{ $settings->whatsapp }}">
-                        <img src="/img/whatsapp.svg" alt="">
-                        <span>WhatsApp</span>
-                    </a>
+                    @if($settings->telegram)
+                        <a href="{{ $settings->telegram }}">
+                            <img src="/img/telegram.svg" alt="">
+                            <span>Telegram</span>
+                        </a>
+                    @endif
+
+                    @if($settings->whatsapp)
+                        <a href="{{ $settings->whatsapp }}">
+                            <img src="/img/whatsapp.svg" alt="">
+                            <span>WhatsApp</span>
+                        </a>
+                    @endif
+
+                    @if($settings->youtube)
+                        <a href="{{ $settings->youtube }}">
+                            <img src="/img/youtube.svg" alt="">
+                            <span>YouTube</span>
+                        </a>
+                    @endif
+
+                    @if($settings->instagram)
+                        <a href="{{ $settings->instagram }}">
+                            <img src="/img/instagram.svg" alt="">
+                            <span>Instagram</span>
+                        </a>
+                    @endif
+
+                    @if($settings->onlyfans)
+                        <a href="{{ $settings->onlyfans }}">
+                            <img src="/img/onlyfans.svg" alt="">
+                            <span>OnlyFans</span>
+                        </a>
+                    @endif
                 </div>
 
                 <p>FuckingMachines.ru © 2022</p>
