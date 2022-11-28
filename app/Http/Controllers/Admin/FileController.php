@@ -22,20 +22,24 @@ class FileController extends Controller
                 }
 
                 $img = Image::make($file->path());
+
+                $img->resize(2500, 2500, function ($const) {
+                    $const->aspectRatio();
+                });
                 
                 // watermark process
                 if($request->watermark == 'w1')
                 {
                     $watermarkAngle = 30;
-                    $watermarkMarginX = 900;
-                    $watermarkMarginY = 900;
+                    $watermarkMarginX = 450;
+                    $watermarkMarginY = 450;
                 }
 
                 if($request->watermark == 'w2')
                 {
                     $watermarkAngle = 0;
-                    $watermarkMarginX = 1500;
-                    $watermarkMarginY = 900;
+                    $watermarkMarginX = 750;
+                    $watermarkMarginY = 450;
                 }
 
                 $x = 0;
@@ -49,7 +53,7 @@ class FileController extends Controller
                         $img->text('FuckingMachines.ru', $x, $y, function($font) use($watermarkAngle, $watermarkMarginX, $watermarkMarginY)
                         {
                             $font->file(public_path('/img/font/NexaTextBold.ttf'));
-                            $font->size(120);
+                            $font->size(60);
                             $font->color([255, 255, 255, 0.07]);
                             $font->align('center');
                             $font->valign('center');
@@ -62,9 +66,7 @@ class FileController extends Controller
                     $x += $watermarkMarginX;
                 }
 
-                $img->resize(2500, 2500, function ($const) {
-                    $const->aspectRatio();
-                })->save(public_path() . '/uploads/products/' . $filename);
+                $img->save(public_path() . '/uploads/products/' . $filename);
 
                 return \Response::make('/uploads/products/' . $filename, 200, [
                     'Content-Disposition' => 'inline',
