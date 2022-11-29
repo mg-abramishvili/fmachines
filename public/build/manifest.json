@@ -8,7 +8,7 @@
     ]
   },
   "resources/js/admin.js": {
-    "file": "assets/admin.60618f97.js",
+    "file": "assets/admin.6a85d28b.js",
     "src": "resources/js/admin.js",
     "isEntry": true,
     "imports": [

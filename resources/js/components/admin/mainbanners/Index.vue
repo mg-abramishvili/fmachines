@@ -22,7 +22,7 @@
                                 <td>
                                     <router-link :to="{name: 'MainBannerMaster', params: {id: mainbanner.id} }" class="text-decoration-none">
                                         {{ mainbanner.title }}
-                                        <br><small class="text-muted">{{ mainbanners.title_eng }}</small>
+                                        <br><small class="text-muted">{{ mainbanner.subtitle }}</small>
                                     </router-link>
                                 </td>
                             </tr>
