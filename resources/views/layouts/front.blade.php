@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/flickity.css">
+    <link rel="stylesheet" href="/css/flickity-fade.css">
     @vite('resources/css/front.css')
 </head>
 <body>
@@ -98,7 +99,7 @@
                                         </li>
                                     @endforeach
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">VHS</a>
+                                        <a class="nav-link" href="/videos">VHS</a>
                                     </li>
                                     @foreach($categories->skip(5) as $category)
                                         <li class="nav-item">
@@ -174,7 +175,7 @@
                         </a>
                     @endif
 
-                    @if($settings->youtube)
+                    <!-- @if($settings->youtube)
                         <a href="{{ $settings->youtube }}">
                             <img src="/img/youtube.svg" alt="">
                             <span>YouTube</span>
@@ -193,7 +194,7 @@
                             <img src="/img/onlyfans.svg" alt="">
                             <span>OnlyFans</span>
                         </a>
-                    @endif
+                    @endif -->
                 </div>
 
                 <p>FuckingMachines.ru © 2022</p>
@@ -225,6 +226,7 @@
 
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/flickity.pkgd.min.js"></script>
+    <script src="/js/flickity-fade.js"></script>
     @vite('resources/js/front.js')
     
     @yield('scripts')

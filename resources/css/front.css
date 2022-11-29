@@ -352,6 +352,9 @@ header {
     padding: 0;
     color: #fff;
     z-index: 2;
+    margin-top: -500px;
+    left: 0;
+    right: 0;
 }
 #main-carousel .carousel-caption h1 {
     font-size: 30px;
@@ -748,6 +751,7 @@ header {
 footer {
     padding: 25px 0;
     text-align: center;
+    margin-top: 100px;
 }
 footer a {
     color: #ff37a3;
@@ -761,21 +765,19 @@ footer a {
     margin-bottom: 50px;
 }
 .socials a {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 30px;
-    border: 1px solid #ff37a3;
-    border-radius: 6px;
     color: #fff;
-    margin: 0 10px;
+    margin: 0 20px;
+    text-decoration: none;
 }
 .socials a:hover {
-    background-color: #ff37a3;
+    color: #ff37a3;
 }
 .socials a img {
     width: auto;
     height: 40px;
-    margin-right: 10px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
 /* FOOTER */
 
@@ -792,3 +794,28 @@ footer a {
     font-size: 14px;
 }
 /* MODAL */
+
+.vhs-list-item {
+    text-align: center;
+    color: #fff;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    width: 700px;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+.vhs-list-item video {
+    width: 100%;
+    display: block;
+}
+.vhs-list-item p {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.mainbanners-slider .carousel-cell {
+    width: 100%;
+}

@@ -12,6 +12,12 @@ import Leads from './components/admin/leads/Index.vue'
 
 import Settings from './components/admin/settings/Edit.vue'
 
+import Videos from './components/admin/Videos/Index.vue'
+import VideoMaster from './components/admin/Videos/VideoMaster.vue'
+
+import MainBanners from './components/admin/mainbanners/Index.vue'
+import MainBannerMaster from './components/admin/mainbanners/MainBannerMaster.vue'
+
 const routes = [
     {
         path: '/admin',
@@ -47,6 +53,26 @@ const routes = [
         path: '/admin/leads',
         name: 'Leads',
         component: Leads
+    },
+    {
+        path: '/admin/videos',
+        name: 'Videos',
+        component: Videos
+    },
+    {
+        path: '/admin/video-master/:id?',
+        name: 'VideoMaster',
+        component: VideoMaster
+    },
+    {
+        path: '/admin/mainbanners',
+        name: 'MainBanners',
+        component: MainBanners
+    },
+    {
+        path: '/admin/mainbanner-master/:id?',
+        name: 'MainBannerMaster',
+        component: MainBannerMaster
     },
 ];
 

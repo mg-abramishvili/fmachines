@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\MainBanner;
+use App\Models\Video;
 
 Route::get('/', function () {
     $mainbanners = MainBanner::all();
@@ -34,6 +35,18 @@ Route::get('policy', function () {
     return view('policy');
 });
 
+Route::get('videos', function () {
+    $videos = Video::all();
+
+    return view('videos', compact('videos'));
+});
+
+Route::get('video/{id}', function ($id) {
+    $video = Video::find($id);
+
+    return view('video', compact('video'));
+});
+
 Route::post('_leads', [App\Http\Controllers\LeadController::class, 'store']);
 
 Route::get('_age', [App\Http\Controllers\AgeController::class, 'index']);
@@ -53,6 +66,18 @@ Route::prefix("admin")->middleware(['auth'])->group(function() {
 // ADMIN SETTINGS
 Route::get('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'index'])->middleware(['auth']);
 Route::post('_admin/settings', [App\Http\Controllers\Admin\SettingController::class, 'update'])->middleware(['auth']);
+
+// ADMIN MAIN BANNERS
+Route::get('_admin/mainbanners', [App\Http\Controllers\Admin\MainBannerController::class, 'index'])->middleware(['auth']);
+Route::post('_admin/mainbanners', [App\Http\Controllers\Admin\MainBannerController::class, 'store'])->middleware(['auth']);
+Route::get('_admin/mainbanner/{id}', [App\Http\Controllers\Admin\MainBannerController::class, 'mainbanner'])->middleware(['auth']);
+Route::put('_admin/mainbanner/{id}/update', [App\Http\Controllers\Admin\MainBannerController::class, 'update'])->middleware(['auth']);
+
+// ADMIN VIDEOS
+Route::get('_admin/videos', [App\Http\Controllers\Admin\VideoController::class, 'index'])->middleware(['auth']);
+Route::post('_admin/videos', [App\Http\Controllers\Admin\VideoController::class, 'store'])->middleware(['auth']);
+Route::get('_admin/video/{id}', [App\Http\Controllers\Admin\VideoController::class, 'video'])->middleware(['auth']);
+Route::put('_admin/video/{id}/update', [App\Http\Controllers\Admin\VideoController::class, 'update'])->middleware(['auth']);
 
 // ADMIN CATEGORIES
 Route::get('_admin/categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->middleware(['auth']);

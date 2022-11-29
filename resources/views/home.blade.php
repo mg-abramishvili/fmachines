@@ -14,9 +14,9 @@
                         <source src="{{ $settings->video_bg }}" type="video/mp4">
                     </video>
                 </div>
-                <div class="carousel-caption">
+                <div class="carousel-caption mainbanners-slider" data-flickity='{ "autoPlay": 5000, "pauseAutoPlayOnHover": false, "fade": true, "draggable": false, "prevNextButtons": false, "pageDots": false }'>
                     @foreach($mainbanners as $mainbanner)
-                        <div class="carousel-caption-slide">
+                        <div class="carousel-cell">
                             <h1>
                                 @if(app()->getLocale() == 'en')
                                     {{ $mainbanner->title_eng }}
