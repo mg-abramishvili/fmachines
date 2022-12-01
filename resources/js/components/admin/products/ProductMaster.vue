@@ -48,7 +48,7 @@
                                         <option :value="category.id">{{ category.name }}</option>
 
                                         <template v-if="category.children && category.children.length">
-                                            <option v-for="child in category.children" :value="child.id">{{ child.name }}</option>
+                                            <option v-for="child in category.children" :value="child.id">- {{ child.name }}</option>
                                         </template>
                                     </template>
                                 </select>
