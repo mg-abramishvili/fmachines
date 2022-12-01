@@ -44,7 +44,13 @@
                             <div class="col-12 col-lg-6">
                                 <label class="form-label">Категория</label>
                                 <select v-model="selected.category" class="form-select">
-                                    <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                                    <template v-for="category in categories">
+                                        <option :value="category.id">{{ category.name }}</option>
+
+                                        <template v-if="category.children && category.children.length">
+                                            <option v-for="child in category.children" :value="child.id">{{ child.name }}</option>
+                                        </template>
+                                    </template>
                                 </select>
                             </div>
                             <div class="col-12 col-lg-6">
@@ -238,7 +244,7 @@ export default {
     },
     methods: {
         loadCategories() {
-            axios.get('/_admin/categories')
+            axios.get('/_admin/categories-with-children')
             .then(response => {
                 this.categories = response.data
             })

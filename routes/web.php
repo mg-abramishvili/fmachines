@@ -81,6 +81,7 @@ Route::put('_admin/video/{id}/update', [App\Http\Controllers\Admin\VideoControll
 
 // ADMIN CATEGORIES
 Route::get('_admin/categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->middleware(['auth']);
+Route::get('_admin/categories-with-children', [App\Http\Controllers\Admin\CategoryController::class, 'indexWithChildren'])->middleware(['auth']);
 Route::post('_admin/categories', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->middleware(['auth']);
 Route::get('_admin/category/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'category'])->middleware(['auth']);
 Route::put('_admin/category/{id}/update', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->middleware(['auth']);
