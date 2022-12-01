@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function indexWithChildren()
     {
-        return Category::with('children')->orderBy('order', 'asc')->get();
+        return Category::where('parent_id', null)->with('children')->orderBy('order', 'asc')->get();
     }
 
     public function category($id)
