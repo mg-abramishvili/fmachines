@@ -14,7 +14,7 @@
                 <div class="main-catalog p11">
                     <div class="row">
                         @foreach($category->children as $child)
-                            <div class="col-12 col-lg-4">
+                            <div class="col-6 col-lg-4">
                                 <div class="main-catalog-item">
                                     <a href="/catalog/{{ $child->id }}">
                                         <div class="main-catalog-item-image">
@@ -38,7 +38,7 @@
             <div class="category-page-list">
                 <div class="row">
                     @forelse($category->products as $product)
-                        <div class="col-12 col-lg-4">
+                        <div class="col-6 col-lg-4">
                             <a href="/product/{{ $product->id }}" class="category-page-list-item">
                                 <div class="category-page-list-item-image">
                                     <img src="{{ $product->gallery[0] }}" alt="{{ $product->name }}">
