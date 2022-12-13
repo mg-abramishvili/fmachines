@@ -11,7 +11,7 @@
             </h1>
 
             @if($category->children->count())
-                <div class="main-catalog p11">
+                <div class="main-catalog">
                     <div class="row">
                         @foreach($category->children as $child)
                             <div class="col-6 col-lg-4">
