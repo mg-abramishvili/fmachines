@@ -61,7 +61,7 @@
                             @endif
                         </div> -->
 
-                        <div class="addtocart">
+                        <!-- <div class="addtocart">
                             <add-to-cart
                                 lang="{{ app()->getLocale() }}"
                                 
@@ -69,7 +69,7 @@
                                     :product="{{ $product->id }}"
                                 @endif
                             />
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
