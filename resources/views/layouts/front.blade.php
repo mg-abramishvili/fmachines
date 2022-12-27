@@ -19,6 +19,9 @@
 <body>
     <div id="front">
         <!-- <age /> -->
+        <div class="alert alert-danger" role="alert">
+            Мы обновляем сайт. Возможны перебои в работе. Пожалуйста, уточняйте цены по Telegram или WhatsApp.
+        </div>
 
         <header>
             <div class="header-top">

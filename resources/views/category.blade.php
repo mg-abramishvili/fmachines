@@ -44,13 +44,13 @@
                                     <img src="{{ $product->gallery[0] }}" alt="{{ $product->name }}">
                                 </div>
 
-                                <span>
+                                <!-- <span>
                                     @if(app()->getLocale() == 'en')
                                         ${{ $product->price_usd }}
                                     @else
                                         {{ $product->price_rub }} ₽
                                     @endif
-                                </span>
+                                </span> -->
 
                                 <h3>
                                     @if(app()->getLocale() == 'en')

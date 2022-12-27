@@ -53,13 +53,13 @@
                             @endif
                         </h1>
 
-                        <div class="price">
+                        <!-- <div class="price">
                             @if(app()->getLocale() == 'en')
                                 ${{ $product->price_usd }}
                             @else
                                 {{ $product->price_rub }} ₽
                             @endif
-                        </div>
+                        </div> -->
 
                         <div class="addtocart">
                             <add-to-cart
@@ -99,13 +99,13 @@
                                         <img src="{{ $randomProduct->gallery[0] }}" alt="{{ $randomProduct->name }}">
                                     </div>
 
-                                    <span>
+                                    <!-- <span>
                                         @if(app()->getLocale() == 'en')
                                             ${{ $randomProduct->price_usd }}
                                         @else
                                             {{ $randomProduct->price_rub }} ₽
                                         @endif
-                                    </span>
+                                    </span> -->
 
                                     <h3>
                                         @if(app()->getLocale() == 'en')
