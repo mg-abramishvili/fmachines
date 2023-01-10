@@ -352,6 +352,23 @@ header {
 .offcanvas {
     background-color: rgba(255, 63, 140, 0.9);
     background-color: rgba(50, 50, 50, 0.92);
+    bottom: auto;
+    max-width: 80%;
+}
+@media (min-width: 992px) {
+    .offcanvas {
+        bottom: 0;
+        max-width: 100%;
+    }
+}
+.offcanvas-body {
+    padding: 0;
+    padding-bottom: 30px;
+}
+@media (min-width: 992px) {
+    .offcanvas-body {
+        padding: 1rem;
+    }
 }
 .nav-link {
     font-weight: 300;
